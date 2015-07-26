@@ -1,0 +1,19 @@
+{
+  "name": "zm-event-kit",
+  "version": "0.0.1",
+  "description": "An event kit for Node and Browsers",
+  "main": "dist/EventKit.js",
+  "scripts": {
+    "test": "apm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZoomPK/event-kit.git"
+  },
+  "author": "steelbrain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZoomPK/event-kit/issues"
+  },
+  "homepage": "https://github.com/ZoomPK/event-kit#readme"
+}
