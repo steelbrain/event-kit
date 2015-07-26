@@ -9,6 +9,7 @@ class Disposable{
       this.callback()
       this.callback = null
     }
+    this.disposed = true
   }
 }
 module.exports = Disposable
