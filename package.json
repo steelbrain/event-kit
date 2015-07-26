@@ -4,7 +4,9 @@
   "description": "An event kit for Node and Browsers",
   "main": "dist/EventKit.js",
   "scripts": {
-    "test": "apm test"
+    "test": "apm test",
+    "browserify": "uc-compile dist/EventKit.js --Browserify > browser.js",
+    "min-browserify": "uc-compile dist/EventKit.js --Browserify --Compress > browser.min.js"
   },
   "repository": {
     "type": "git",
