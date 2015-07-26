@@ -6,7 +6,8 @@
   "scripts": {
     "test": "apm test",
     "browserify": "uc-compile dist/EventKit.js --Browserify > browser.js",
-    "min-browserify": "uc-compile dist/EventKit.js --Browserify --Compress > browser.min.js"
+    "min-browserify": "uc-compile dist/EventKit.js --Browserify --Compress > browser.min.js",
+    "compile": "uc-compile src/CompositeDisposable.js --Transpile > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Transpile > dist/Disposable.js; uc-compile src/Emitter.js --Transpile > dist/Emitter.js; uc-compile src/EventKit.js --Transpile > dist/EventKit.js"
   },
   "repository": {
     "type": "git",
