@@ -5,8 +5,10 @@ class Disposable{
   }
   dispose(){
     if(this.disposed) return
-    this.callback()
-    this.callback = null
+    if(this.callback){
+      this.callback()
+      this.callback = null
+    }
   }
 }
 module.exports = Disposable
