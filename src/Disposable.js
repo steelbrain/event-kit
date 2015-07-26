@@ -5,10 +5,10 @@ class Disposable{
   }
   dispose(){
     if(this.disposed) return
-    if(this.callback){
+    if(typeof this.callback === 'function'){
       this.callback()
-      this.callback = null
     }
+    this.callback = null
     this.disposed = true
   }
 }
