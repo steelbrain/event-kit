@@ -1,7 +1,7 @@
 let Disposable = require('./Disposable')
 class Emitter{
-  disposed = false
   constructor(){
+    this.disposed = false
     this.handlersByEventName = {}
   }
   dispose(){

@@ -1,6 +1,6 @@
 class Disposable{
-  disposed = false
   constructor(callback){
+    this.disposed = false
     this.callback = callback
   }
   dispose(){

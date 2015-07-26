@@ -1,6 +1,6 @@
 class CompositeDisposable{
-  disposed = false
   constructor(){
+    this.disposed = false
     this.disposables = new Set(arguments)
   }
   dispose(){
