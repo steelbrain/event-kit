@@ -156,9 +156,12 @@ module.exports = Emitter;
 },{"./Disposable":2}],4:[function(require,module,exports){
 'use strict';
 
-module.exports = {
+var EventKit = {
   CompositeDisposable: require('./CompositeDisposable'),
   Disposable: require('./Disposable'),
   Emitter: require('./Emitter')
 };
+if (typeof window !== 'undefined') {
+  window.EventKit = EventKit;
+} else module.exports = EventKit;
 },{"./CompositeDisposable":1,"./Disposable":2,"./Emitter":3}]},{},[4]);
