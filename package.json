@@ -5,7 +5,7 @@
   "main": "dist/EventKit.js",
   "scripts": {
     "test": "apm test",
-    "compile": "uc-compile src/CompositeDisposable.js --Transpile > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Transpile > dist/Disposable.js; uc-compile src/Emitter.js --Transpile > dist/Emitter.js; uc-compile src/EventKit.js --Transpile > dist/EventKit.js"
+    "compile": "uc-compile src/CompositeDisposable.js --Babel > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Babel > dist/Disposable.js; uc-compile src/Emitter.js --Babel > dist/Emitter.js; uc-compile src/EventKit.js --Babel > dist/EventKit.js"
   },
   "repository": {
     "type": "git",
