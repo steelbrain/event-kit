@@ -5,7 +5,7 @@
   "main": "dist/EventKit.js",
   "scripts": {
     "test": "apm test",
-    "compile": "uc-compile src/CompositeDisposable.js --Babel > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Babel > dist/Disposable.js; uc-compile src/Emitter.js --Babel > dist/Emitter.js; uc-compile src/EventKit.js --Babel > dist/EventKit.js"
+    "compile": "uc-compile src/CompositeDisposable.js --Babel > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Babel > dist/Disposable.js; uc-compile src/Emitter.js --Babel > dist/Emitter.js; uc-compile src/EventKit.js --Babel > dist/EventKit.js; uc-compile src/Browser.js --Babel > dist/Browser.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/ZoomPK/event-kit/issues"
   },
-  "homepage": "https://github.com/ZoomPK/event-kit#readme"
+  "homepage": "https://github.com/ZoomPK/event-kit#readme",
+  "browser": "dist/Browser.js"
 }
