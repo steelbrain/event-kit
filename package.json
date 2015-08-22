@@ -1,6 +1,6 @@
 {
   "name": "zm-event-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An event kit for Node and Browsers",
   "main": "dist/EventKit.js",
   "scripts": {
