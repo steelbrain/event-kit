@@ -1,11 +1,14 @@
 {
   "name": "zm-event-kit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An event kit for Node and Browsers",
   "main": "dist/EventKit.js",
   "scripts": {
     "test": "apm test",
-    "compile": "uc-compile src/CompositeDisposable.js --Babel > dist/CompositeDisposable.js; uc-compile src/Disposable.js --Babel > dist/Disposable.js; uc-compile src/Emitter.js --Babel > dist/Emitter.js; uc-compile src/EventKit.js --Babel > dist/EventKit.js; uc-compile src/Browser.js --Babel > dist/Browser.js"
+    "compile-src": "uc-compile src",
+    "compile-bundle": "browserify -r .:zm-event-kit > dist/browser.bundle.js",
+    "compile-bundle-min": "browserify -r .:zm-event-kit | uglifyjs > dist/browser.bundle.min.js",
+    "compile": "npm run compile-src; npm run compile-bundle; npm run compile-bundle-min"
   },
   "repository": {
     "type": "git",
@@ -16,6 +19,5 @@
   "bugs": {
     "url": "https://github.com/ZoomPK/event-kit/issues"
   },
-  "homepage": "https://github.com/ZoomPK/event-kit#readme",
-  "browser": "dist/Browser.js"
+  "homepage": "https://github.com/ZoomPK/event-kit#readme"
 }

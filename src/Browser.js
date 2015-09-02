@@ -1,6 +1,6 @@
 // @Compiler-Babel "true"
 // @Compiler-Browserify "true"
-// @Compiler-Output "../dist/Browser.js"
+// @Compiler-Output "/dev/null"
 if (typeof window !== 'undefined') {
   window.EventKit = window.EventKit || require('./EventKit')
   module.exports = window.EventKit
