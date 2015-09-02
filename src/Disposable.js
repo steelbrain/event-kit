@@ -1,3 +1,5 @@
+// @Compiler-Babel "true"
+// @Compiler-Output "../dist/Disposable.js"
 class Disposable{
   constructor(callback){
     this.disposed = false

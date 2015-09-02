@@ -1,3 +1,5 @@
+// @Compiler-Babel "true"
+// @Compiler-Output "../dist/CompositeDisposable.js"
 class CompositeDisposable{
   constructor(){
     this.disposed = false

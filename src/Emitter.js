@@ -1,3 +1,5 @@
+// @Compiler-Babel "true"
+// @Compiler-Output "../dist/Emitter.js"
 let Disposable = require('./Disposable')
 class Emitter{
   constructor(){
