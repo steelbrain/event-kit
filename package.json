@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZoomPK/event-kit.git"
+    "url": "git+https://github.com/steelbrain/event-kit.git"
   },
   "devDependencies": {
     "babel-preset-steelbrain": "^1.0.0"
@@ -19,7 +19,7 @@
   "author": "steelbrain",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ZoomPK/event-kit/issues"
+    "url": "https://github.com/steelbrain/event-kit/issues"
   },
-  "homepage": "https://github.com/ZoomPK/event-kit#readme"
+  "homepage": "https://github.com/steelbrain/event-kit#readme"
 }
