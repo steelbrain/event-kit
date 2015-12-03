@@ -1,4 +1,4 @@
-Emitter = require '../dist/Emitter'
+{Emitter} = require('../src/emitter')
 
 describe "Emitter", ->
   it "invokes the observer when the named event is emitted until disposed", ->

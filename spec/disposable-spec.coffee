@@ -1,4 +1,4 @@
-Disposable = require '../dist/Disposable'
+{Disposable} = require('../src/disposable')
 
 describe "Disposable", ->
   it "does not try to execute disposalAction when it is not a function", ->

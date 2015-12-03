@@ -1,5 +1,5 @@
-CompositeDisposable = require '../dist/CompositeDisposable'
-Disposable = require '../dist/Disposable'
+{CompositeDisposable} = require('../src/composite-disposable')
+{Disposable} = require('../src/disposable')
 
 describe "CompositeDisposable", ->
   [disposable1, disposable2, disposable3] = []

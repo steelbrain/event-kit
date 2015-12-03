@@ -1,18 +1,19 @@
 {
-  "name": "zm-event-kit",
+  "name": "sb-event-kit",
   "version": "1.0.3",
   "description": "An event kit for Node and Browsers",
-  "main": "dist/EventKit.js",
+  "main": "lib/main.js",
+  "jsnext:main": "src/main.js",
   "scripts": {
     "test": "apm test",
-    "compile-src": "uc-compile src",
-    "compile-bundle": "browserify -r .:zm-event-kit > dist/browser.bundle.js",
-    "compile-bundle-min": "browserify -r .:zm-event-kit | uglifyjs > dist/browser.bundle.min.js",
-    "compile": "npm run compile-src; npm run compile-bundle; npm run compile-bundle-min"
+    "compile": "ucompiler go"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ZoomPK/event-kit.git"
+  },
+  "devDependencies": {
+    "babel-preset-steelbrain": "^1.0.0"
   },
   "author": "steelbrain",
   "license": "MIT",
