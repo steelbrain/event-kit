@@ -1,38 +1,50 @@
-// @Compiler-Babel "true"
-// @Compiler-Output "../dist/Emitter.js"
-let Disposable = require('./Disposable')
-class Emitter{
-  constructor(){
+'use babel'
+
+import {Disposable} from './disposable'
+
+export class Emitter {
+  constructor() {
     this.disposed = false
-    this.handlersByEventName = {}
+    this.handlers = {}
   }
   dispose(){
     this.disposed = true
-    this.handlersByEventName = null
+    this.handlers = null
   }
   on(eventName, handler){
-    if(this.disposed) throw new Error('Emitter has been disposed')
-    if(typeof handler !== 'function') throw new Error('Handler must be a function')
-    if(this.handlersByEventName.hasOwnProperty(eventName)){
-      this.handlersByEventName[eventName].push(handler)
-    } else {
-      this.handlersByEventName[eventName] = [handler]
+    if (this.disposed) {
+      throw new Error('Emitter has been disposed')
     }
-    return new Disposable(() => this.off(eventName, handler))
+    if (typeof handler !== 'function') {
+      throw new Error('Event handler must be a function')
+    }
+    if (typeof this.handlers[eventName] === 'undefined') {
+      this.handlers[eventName] = [handler]
+    } else {
+      this.handlers[eventName].push(handler)
+    }
+    return new Disposable(() => {
+      this.off(eventName, handler)
+    })
   }
   off(eventName, handler){
-    if(this.disposed || !this.handlersByEventName.hasOwnProperty(eventName)) return
-    let Index
-    if((Index = this.handlersByEventName[eventName].indexOf(handler)) !== -1){
-      this.handlersByEventName[eventName].splice(Index, 1)
+    if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
+      return
+    }
+    const index = this.handlers[eventName].indexOf(handler)
+    if (index !== -1) {
+      this.handlers[eventName].splice(index, 1)
     }
   }
-  clear(){
-    this.handlersByEventName = {}
+  clear() {
+    this.handlers = []
   }
-  emit(eventName, value){
-    if(this.disposed || !this.handlersByEventName.hasOwnProperty(eventName)) return
-    this.handlersByEventName[eventName].forEach(callback => callback(value))
+  emit(eventName, ...params){
+    if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
+      return
+    }
+    this.handlers[eventName].forEach(function(callback) {
+      callback(...params)
+    })
   }
 }
-module.exports = Emitter
