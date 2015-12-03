@@ -1,12 +1,13 @@
 {
   "name": "sb-event-kit",
-  "version": "1.0.3",
-  "description": "An event kit for Node and Browsers",
+  "version": "1.0.0",
+  "description": "An event for creating disposable components",
   "main": "lib/main.js",
   "jsnext:main": "src/main.js",
   "scripts": {
     "test": "apm test",
-    "compile": "ucompiler go"
+    "compile": "ucompiler go",
+    "prepublish": "browserify lib/main.js --standalone EventKit > eventkit.js && git add eventkit.js && git commit -m ':arrow_up: Upgrade dist file'"
   },
   "repository": {
     "type": "git",
