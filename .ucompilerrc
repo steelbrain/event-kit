@@ -5,7 +5,7 @@
       "outputPath": "lib/{name}.js",
       "plugins": ["babel"],
       "babel": {
-        "presets": ["steelbrain"]
+        "presets": ["steelbrain", "steelbrain-legacy"]
       }
     }
   ]

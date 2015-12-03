@@ -14,7 +14,8 @@
     "url": "git+https://github.com/steelbrain/event-kit.git"
   },
   "devDependencies": {
-    "babel-preset-steelbrain": "^1.0.0"
+    "babel-preset-steelbrain": "^1.0.0",
+    "babel-preset-steelbrain-legacy": "^1.0.0"
   },
   "author": "steelbrain",
   "license": "MIT",
