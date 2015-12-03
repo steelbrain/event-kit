@@ -20,13 +20,21 @@ class CompositeDisposable {
     }
   }
   add() {
+    var _this = this;
+
     if (!this.disposed) {
-      Array.prototype.forEach.call(arguments, item => this.disposables.add(item));
+      Array.prototype.forEach.call(arguments, function (item) {
+        return _this.disposables.add(item);
+      });
     }
   }
   remove() {
+    var _this2 = this;
+
     if (!this.disposed) {
-      Array.prototype.forEach.call(arguments, item => this.disposables.delete(item));
+      Array.prototype.forEach.call(arguments, function (item) {
+        return _this2.disposables.delete(item);
+      });
     }
   }
   clear() {
@@ -80,6 +88,8 @@ class Emitter {
     this.handlers = null;
   }
   on(eventName, handler) {
+    var _this = this;
+
     if (this.disposed) {
       throw new Error('Emitter has been disposed');
     }
@@ -91,8 +101,8 @@ class Emitter {
     } else {
       this.handlers[eventName].push(handler);
     }
-    return new _disposable.Disposable(() => {
-      this.off(eventName, handler);
+    return new _disposable.Disposable(function () {
+      _this.off(eventName, handler);
     });
   }
   off(eventName, handler) {
@@ -115,8 +125,15 @@ class Emitter {
     if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
       return;
     }
+    const paramsLength = params.length;
     this.handlers[eventName].forEach(function (callback) {
-      callback(...params);
+      if (paramsLength === 1) {
+        callback(params[0]);
+      } else if (paramsLength === 2) {
+        callback(params[0], params[1]);
+      } else {
+        callback.apply(undefined, params);
+      }
     });
   }
 }
