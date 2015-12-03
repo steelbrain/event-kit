@@ -43,8 +43,15 @@ export class Emitter {
     if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
       return
     }
+    const paramsLength = params.length
     this.handlers[eventName].forEach(function(callback) {
-      callback(...params)
+      if (paramsLength === 1) {
+        callback(params[0])
+      } else if (paramsLength === 2) {
+        callback(params[0], params[1])
+      } else {
+        callback(...params)
+      }
     })
   }
 }
