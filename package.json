@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "An event kit for Node and Browsers",
   "main": "lib/main.js",
+  "jsnext:main": "src/main.js",
   "scripts": {
     "test": "apm test",
     "compile": "ucompiler go"
