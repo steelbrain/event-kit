@@ -1,5 +1,6 @@
 Event-Kit
 ===========
+
 Event-Kit is a JS port of [Atom's EventKit][1].
 
 #### API
