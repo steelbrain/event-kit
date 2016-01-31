@@ -49,6 +49,12 @@ export class Emitter {
         callback(params[0])
       } else if (paramsLength === 2) {
         callback(params[0], params[1])
+      } else if (paramsLength === 3) {
+        callback(params[0], params[1], params[2])
+      } else if (paramsLength === 4) {
+        callback(params[0], params[1], params[2], params[3])
+      } else if (paramsLength === 5) {
+        callback(params[0], params[1], params[2], params[3], params[4])
       } else {
         callback(...params)
       }
