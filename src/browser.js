@@ -1,1 +1,1 @@
-'use babel'
+'use strict'
