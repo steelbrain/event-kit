@@ -38,10 +38,10 @@ export class CompositeDisposable {
   }
   dispose(){
     if (!this.disposed) {
-      this.disposed = true
-      this.disposables.forEach(function(item) {
+      for (const item of this.disposables) {
         item.dispose()
-      })
+      }
+      this.disposed = true
       this.disposables.clear()
     }
   }
