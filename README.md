@@ -1,29 +1,32 @@
 Event-Kit
 ===========
 
-Event-Kit is a JS port of [Atom's EventKit][1].
+Event-Kit is an Event handling architecture inspired from [Atom's EventKit][1]
 
 #### API
 
 ```js
 export class CompositeDisposable {
   constructor()
-  dispose()
   add(...disposables)
   remove(...disposables)
   clear()
+  isDisposed(): boolean
+  dispose()
 }
 export class Disposable {
   constructor(callback)
+  isDisposed(): boolean
   dispose()
 }
 export class Emitter {
   constructor()
-  dispose()
   on(eventName, handler): Disposable
-  off(eventName, handler) <-- alias to Disposable.dispose()
+  off(eventName, handler)
   clear()
   emit(eventName, ...params)
+  isDisposed(): boolean
+  dispose()
 }
 ```
 
