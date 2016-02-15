@@ -1,3 +1,7 @@
+## 1.1.2
+
+* Fix invalid name in browserify bundle
+
 ## 1.1.1
 
 * Add outputs for both bundle and library
