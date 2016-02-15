@@ -1,17 +1,18 @@
 'use babel'
 
+/* @flow */
+
 import {Disposable} from './disposable'
 
 export class Emitter {
+  disposed: boolean;
+  handlers: Object;
+
   constructor() {
     this.disposed = false
     this.handlers = {}
   }
-  dispose(){
-    this.disposed = true
-    this.handlers = null
-  }
-  on(eventName, handler){
+  on(eventName: string, handler: Function): Disposable {
     if (this.disposed) {
       throw new Error('Emitter has been disposed')
     }
@@ -19,45 +20,52 @@ export class Emitter {
       throw new Error('Event handler must be a function')
     }
     if (typeof this.handlers[eventName] === 'undefined') {
-      this.handlers[eventName] = [handler]
+      this.handlers[eventName] = new Set([handler])
     } else {
-      this.handlers[eventName].push(handler)
+      this.handlers[eventName].add(handler)
     }
     return new Disposable(() => {
       this.off(eventName, handler)
     })
   }
-  off(eventName, handler){
-    if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
-      return
-    }
-    const index = this.handlers[eventName].indexOf(handler)
-    if (index !== -1) {
-      this.handlers[eventName].splice(index, 1)
+  off(eventName: string, handler: Function){
+    if (!this.disposed && this.handlers[eventName]) {
+      this.handlers[eventName].delete(handler)
     }
   }
   clear() {
-    this.handlers = []
+    this.handlers = {}
   }
-  emit(eventName, ...params){
+  emit(eventName: string, ...params: any) {
     if (this.disposed || typeof this.handlers[eventName] === 'undefined') {
       return
     }
     const paramsLength = params.length
-    this.handlers[eventName].forEach(function(callback) {
+    const promises = []
+    for (const callback of this.handlers[eventName]) {
+      let value
       if (paramsLength === 1) {
-        callback(params[0])
+        value = callback(params[0])
       } else if (paramsLength === 2) {
-        callback(params[0], params[1])
+        value = callback(params[0], params[1])
       } else if (paramsLength === 3) {
-        callback(params[0], params[1], params[2])
+        value = callback(params[0], params[1], params[2])
       } else if (paramsLength === 4) {
-        callback(params[0], params[1], params[2], params[3])
+        value = callback(params[0], params[1], params[2], params[3])
       } else if (paramsLength === 5) {
-        callback(params[0], params[1], params[2], params[3], params[4])
+        value = callback(params[0], params[1], params[2], params[3], params[4])
       } else {
-        callback(...params)
+        value = callback(...params)
       }
-    })
+      promises.push(value)
+    }
+    return Promise.all(promises)
+  }
+  isDisposed(): boolean {
+    return this.disposed
+  }
+  dispose(){
+    this.disposed = true
+    this.handlers = {}
   }
 }

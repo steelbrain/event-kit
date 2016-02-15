@@ -30,3 +30,20 @@ describe "Emitter", ->
     emitter = new Emitter
     expect(-> emitter.on('foo', null)).toThrow()
     expect(-> emitter.on('foo', 'a')).toThrow()
+
+  it "works well with async callbacks", ->
+    called = 0
+    emitter = new Emitter()
+    emitter.on('foo', ->
+      new Promise (resolve) ->
+        called++
+        resolve()
+    )
+    emitter.on('foo', ->
+      new Promise (resolve) ->
+        called++
+        resolve()
+    )
+    waitsForPromise ->
+      emitter.emit('foo').then ->
+        expect(called).toBe(2)

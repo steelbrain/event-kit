@@ -7,15 +7,13 @@
   "scripts": {
     "test": "apm test",
     "compile": "ucompiler go",
-    "dist": "browserify lib/main.js --standalone EventKit > eventkit.js && git add eventkit.js && git commit -m ':arrow_up: Upgrade dist file'"
+    "dist": "browserify lib/main.js --standalone EventKit | babel --presets es2015 | uglifyjs > eventkit.js && git add eventkit.js && git commit -m ':arrow_up: Upgrade dist file'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/steelbrain/event-kit.git"
   },
   "devDependencies": {
-    "babel-preset-steelbrain": "^1.0.0",
-    "babel-preset-steelbrain-legacy": "^1.0.0"
   },
   "author": "steelbrain",
   "license": "MIT",
