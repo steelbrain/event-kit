@@ -1,9 +1,17 @@
 'use babel'
 
+/* @flow */
+
 export class Disposable{
-  constructor(callback){
+  disposed: boolean;
+  callback: ?(() => void);
+
+  constructor(callback: (() => void)){
     this.disposed = false
     this.callback = callback
+  }
+  isDisposed(): boolean {
+    return this.disposed
   }
   dispose(){
     if (!this.disposed) {
