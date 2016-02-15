@@ -41,21 +41,25 @@ export class Emitter {
       return
     }
     const paramsLength = params.length
+    const promises = []
     for (const callback of this.handlers[eventName]) {
+      let value
       if (paramsLength === 1) {
-        callback(params[0])
+        value = callback(params[0])
       } else if (paramsLength === 2) {
-        callback(params[0], params[1])
+        value = callback(params[0], params[1])
       } else if (paramsLength === 3) {
-        callback(params[0], params[1], params[2])
+        value = callback(params[0], params[1], params[2])
       } else if (paramsLength === 4) {
-        callback(params[0], params[1], params[2], params[3])
+        value = callback(params[0], params[1], params[2], params[3])
       } else if (paramsLength === 5) {
-        callback(params[0], params[1], params[2], params[3], params[4])
+        value = callback(params[0], params[1], params[2], params[3], params[4])
       } else {
-        callback(...params)
+        value = callback(...params)
       }
+      promises.push(value)
     }
+    return Promise.all(promises)
   }
   isDisposed(): boolean {
     return this.disposed

@@ -24,7 +24,7 @@ export class Emitter {
   on(eventName, handler): Disposable
   off(eventName, handler)
   clear()
-  emit(eventName, ...params)
+  emit(eventName, ...params): Promise
   isDisposed(): boolean
   dispose()
 }
