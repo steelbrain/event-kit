@@ -7,7 +7,7 @@
   "scripts": {
     "test": "apm test",
     "compile": "ucompiler go",
-    "dist": "browserify lib/main.js --standalone EventKit > eventkit.js && git add eventkit.js && git commit -m ':arrow_up: Upgrade dist file'"
+    "dist": "browserify lib/main.js --standalone EventKit | babel --presets es2015 | uglifyjs > eventkit.js && git add eventkit.js && git commit -m ':arrow_up: Upgrade dist file'"
   },
   "repository": {
     "type": "git",
