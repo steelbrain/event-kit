@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Add outputs for both bundle and library
+
 ## 1.1.0
 
 * Support async event listeners by waiting on promises returned from event listeners (Non API breaking change)
