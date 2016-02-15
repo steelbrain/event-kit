@@ -1,4 +1,4 @@
-'use strict'
+'use babel'
 
 export {Disposable} from './disposable'
 export {CompositeDisposable} from './composite-disposable'
