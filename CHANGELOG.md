@@ -1,3 +1,7 @@
+## 2.0.0
+
+* Remove `bundle` and `library` versions in favor of webpack/pundle style requires
+
 ## 1.1.2
 
 * Fix invalid name in browserify bundle
