@@ -3,13 +3,9 @@
   "version": "1.1.2",
   "description": "A library for creating disposable components",
   "main": "lib/main.js",
-  "jsnext:main": "src/main.js",
   "scripts": {
     "test": "apm test",
-    "compile": "ucompiler go",
-    "dist-standalone": "browserify lib/main.js --standalone EventKit | babel --presets es2015 | uglifyjs > eventkit-bundle.min.js",
-    "dist-library": "browserify -r .:sb-event-kit | babel --presets es2015 | uglifyjs > eventkit-library.min.js",
-    "dist": "npm run dist-standalone ; npm run dist-library ; git add eventkit-*.js ; git commit -m ':arrow_up: Upgrade dist file'"
+    "compile": "ucompiler go"
   },
   "repository": {
     "type": "git",
