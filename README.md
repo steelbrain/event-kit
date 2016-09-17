@@ -7,26 +7,29 @@ Event-Kit is an Application architecture inspired from [Atom's EventKit][1]
 
 ```js
 export class CompositeDisposable {
-  constructor()
+  disposed: boolean;
+
+  constructor(...disposables)
   add(...disposables)
-  remove(...disposables)
+  delete(...disposables)
   clear()
-  isDisposed(): boolean
   dispose()
 }
 export class Disposable {
+  disposed: boolean;
+
   constructor(callback)
-  isDisposed(): boolean
   dispose()
 }
 export class Emitter {
+  disposed: boolean;
+
   constructor()
   on(eventName, handler): Disposable
-  off(eventName, handler)
-  clear()
-  emit(eventName, ...params): Promise
-  isDisposed(): boolean
-  dispose()
+  off(eventName, handler): void
+  clear(): void
+  emit(eventName, ...params): Promise<Array<any>>
+  dispose(): void
 }
 ```
 
@@ -84,7 +87,7 @@ Here's an example app using the Disposable Architecture
 
 ```js
 // app.js
-import {App} from './lib/app'
+import App from './lib/app'
 
 const app = App.create()
 
@@ -96,9 +99,9 @@ App.activate().catch(function(e) {
 
 ```js
 // lib/app.js
-import {Disposable, CompositeDisposable} from 'sb-event-kit'
-import {Database} from './db'
-import {Server} from './server'
+import { Disposable, CompositeDisposable } from 'sb-event-kit'
+import { Server } from './server'
+import Database from './db'
 
 const debug = require('debug')('APP:MAIN')
 
@@ -128,8 +131,8 @@ export class App {
 ```
 ```js
 // lib/db.js
-import {MongoDB} from 'some-mongo-library'
-import {Database as DatabaseConfig} from '../config'
+import MongoDB from 'some-mongo-library'
+import { Database as DatabaseConfig } from '../config'
 
 export class Database {
   constructor() {
@@ -148,9 +151,9 @@ export class Database {
 ```
 ```js
 // lib/server.js
-import {Emitter, Disposable, CompositeDisposable} from 'sb-event-kit'
+import { Emitter, Disposable, CompositeDisposable } from 'sb-event-kit'
 import HTTPServer from 'some-server-library'
-import {Server as ServerConfig} from '../config'
+import { Server as ServerConfig } from '../config'
 
 export class Server {
   constructor() {
@@ -159,6 +162,9 @@ export class Server {
     this.connection = new HTTPServer()
 
     this.subscriptions.add(this.emitter)
+    this.subscriptions.add(() => {
+      this.connection.unref()
+    })
 
     this.connection.on('client', connection => {
       this.emitter.emit('did-client-connect', connection)
@@ -172,7 +178,6 @@ export class Server {
   }
   dispose() {
     this.subscriptions.dispose()
-    this.connection.unref()
   }
 }
 ```
