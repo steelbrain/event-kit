@@ -1,9 +1,10 @@
 [ignore]
-.*/node_modules/*
+<PROJECT_ROOT>/lib/.*
 
 [include]
 
 [libs]
+decls
 
 [options]
 module.system=node

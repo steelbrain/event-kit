@@ -1,4 +1,7 @@
-.idea
 node_modules
-spec
-src
+.flowconfig
+.idea
+/src
+/spec
+.DS_Store
+*.log
