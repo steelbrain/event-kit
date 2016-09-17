@@ -1,48 +1,52 @@
-'use babel'
-
 /* @flow */
 
-import type {Disposable} from './disposable'
+import { validate } from './helpers'
+import type Disposable from './disposable'
 
-export class CompositeDisposable {
+export default class CompositeDisposable {
   disposed: boolean;
-  disposables: Set<Disposable>;
+  disposables: Set<Disposable | (() => void)>;
 
-  constructor(){
+  constructor(...params: Array<any>) {
+    validate(params)
+
     this.disposed = false
-    this.disposables = new Set(arguments)
+    this.disposables = new Set(params)
   }
-  add(){
-    if (!this.disposed) {
-      let length = arguments.length
-      for (let i = 0; i < length; ++i) {
-        this.disposables.add(arguments[i])
-      }
+  add(...params: Array<any>): void {
+    if (this.disposed) {
+      return
+    }
+    for (let i = 0, length = params.length; i < length; ++i) {
+      this.disposables.add(params[i])
     }
   }
-  remove(){
-    if (!this.disposed) {
-      let length = arguments.length
-      for (let i = 0; i < length; ++i) {
-        this.disposables.delete(arguments[i])
-      }
+  delete(...params: Array<any>): void {
+    if (this.disposed) {
+      return
+    }
+    for (let i = 0, length = params.length; i < length; ++i) {
+      this.disposables.delete(params[i])
     }
   }
-  clear(){
-    if (!this.disposed) {
-      this.disposables.clear()
+  clear(): void {
+    if (this.disposed) {
+      return
     }
+    this.disposables.clear()
   }
-  isDisposed(): boolean {
-    return this.disposed
-  }
-  dispose(){
-    if (!this.disposed) {
-      for (const item of this.disposables) {
+  dispose(): void {
+    if (this.disposed) {
+      return
+    }
+    for (const item of this.disposables) {
+      if (typeof item.dispose === 'function') {
         item.dispose()
+      } else if (typeof item === 'function') {
+        item()
       }
-      this.disposed = true
-      this.disposables.clear()
     }
+    this.disposed = true
+    this.disposables.clear()
   }
 }

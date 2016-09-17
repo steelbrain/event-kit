@@ -1,24 +1,20 @@
-'use babel'
-
 /* @flow */
 
-export class Disposable{
-  disposed: boolean;
+import invariant from 'assert'
+
+export default class Disposable {
   callback: ?(() => void);
 
-  constructor(callback: (() => void)){
-    this.disposed = false
+  constructor(callback: (() => void)) {
+    invariant(typeof callback === 'function', 'callback should be a function')
     this.callback = callback
   }
-  isDisposed(): boolean {
-    return this.disposed
+  get disposed(): boolean {
+    return this.callback !== null
   }
-  dispose(){
-    if (!this.disposed) {
-      this.disposed = true
-      if(typeof this.callback === 'function'){
-        this.callback()
-      }
+  dispose(): void {
+    if (this.callback) {
+      this.callback()
       this.callback = null
     }
   }

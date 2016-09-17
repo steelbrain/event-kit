@@ -1,5 +1,17 @@
-'use babel'
+/* @flow */
 
-export {Disposable} from './disposable'
-export {CompositeDisposable} from './composite-disposable'
-export {Emitter} from './emitter'
+import Emitter from './emitter'
+import Disposable from './disposable'
+import CompositeDisposable from './composite-disposable'
+
+export {
+  Emitter,
+  Disposable,
+  CompositeDisposable,
+}
+
+export default {
+  Emitter,
+  Disposable,
+  CompositeDisposable,
+}
