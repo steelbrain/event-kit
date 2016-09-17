@@ -17,6 +17,7 @@ export default class CompositeDisposable {
     if (this.disposed) {
       return
     }
+    validate(params)
     for (let i = 0, length = params.length; i < length; ++i) {
       this.disposables.add(params[i])
     }

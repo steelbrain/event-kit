@@ -10,7 +10,7 @@ export default class Disposable {
     this.callback = callback
   }
   get disposed(): boolean {
-    return this.callback !== null
+    return this.callback === null
   }
   dispose(): void {
     if (this.callback) {
