@@ -49,7 +49,7 @@ Emitters of this architecture are just like every other emitter but the one thin
 disposables when you bind an event, you won't have to call `.removeListener` or `.off` anymore, just dispose the disposable you get
 from `.on`.
 
-##### ComositeDisposable
+##### CompositeDisposable
 
 CompositeDisposables are containers of disposables. They implement the disposable interface themselves, so when we do
 `compositedisposable.dispose()` they iterate over all of their disposables and dispose them as well.
