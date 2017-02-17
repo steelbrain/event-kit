@@ -18,7 +18,7 @@
     "babel-cli": "^6.14.0",
     "babel-preset-steelbrain": "^5.0.0",
     "eslint-config-steelbrain": "^1.0.4",
-    "flow-bin": "^0.32.0",
+    "flow-bin": "^0.33.0",
     "jasmine-fix": "^1.0.1"
   },
   "author": "steelbrain",
