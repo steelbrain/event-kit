@@ -1,6 +1,8 @@
 Event-Kit
 ===========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/steelbrain/event-kit.svg)](https://greenkeeper.io/)
+
 Event-Kit is an Application architecture inspired from [Atom's EventKit][1]
 
 #### API
