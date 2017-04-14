@@ -19,7 +19,8 @@ export default class Emitter {
     }
     let callbacks = this.handlers[eventName]
     if (typeof callbacks === 'undefined') {
-      callbacks = this.handlers[eventName] = [handler]
+      callbacks = [handler]
+      this.handlers[eventName] = callbacks
     } else {
       callbacks.push(handler)
     }
