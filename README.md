@@ -43,7 +43,7 @@ This architecture is something that works everywhere™, you can hot-reload them
 ##### Disposable
 
 Disposables are the base of this architecture, they are objects that have a `dispose` function on them. It is called whenever a
-parent object is being disposed, all of the cleanup code should go there.
+parent object is being disposed, all of the cleanup code should go there. Also note that every function in the EventKit architecture that accepts a `Disposable`, also accepts a function callback.
 
 ##### Emitter
 
