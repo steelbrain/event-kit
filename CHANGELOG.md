@@ -1,3 +1,7 @@
+## 3.1.0
+
+- Add Typescript typings to the package
+
 ## 3.0.0
 
 - `Disposable` constructor now asserts the parameter to be a function
