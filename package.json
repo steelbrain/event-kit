@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "A library for creating disposable components",
   "main": "lib/main.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "lint": "(flow check) && (eslint .)",
     "test": "apm test",
